@@ -1,0 +1,97 @@
+name: PlantPlant
+options:
+  bundleIdPrefix: com.kittmedia
+  developmentLanguage: en
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+# German + English are supported; the Localizable.xcstrings catalog carries the translations.
+knownRegions:
+  - en
+  - de
+  - Base
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: ""
+    IPHONEOS_DEPLOYMENT_TARGET: "26.0"
+    TARGETED_DEVICE_FAMILY: "1,2"
+
+targets:
+  PlantPlant:
+    type: application
+    platform: iOS
+    sources:
+      - path: PlantPlant
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kittmedia.plantplant
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_CFBundleDisplayName: PlantPlant
+        # Support every interface orientation on both iPhone and iPad — the app doesn't
+        # require full screen, so all orientations must be available (incl. iPad multitasking).
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_NSCameraUsageDescription: "Take photos of your plants."
+        INFOPLIST_KEY_NSPhotoLibraryUsageDescription: "Add photos of your plants."
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AppTint
+        ENABLE_USER_SCRIPT_SANDBOXING: YES
+    # NOTE: App-only build for free (personal-team) signing. App Groups and app
+    # extensions require a paid Apple Developer Program membership, so the widget
+    # target and the App Group entitlement are disabled below. With a paid account,
+    # restore `CODE_SIGN_ENTITLEMENTS` + the widget dependency/target and re-run xcodegen.
+    # dependencies:
+    #   - target: PlantPlantWidgetExtension
+
+  PlantPlantTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: PlantPlantTests
+    dependencies:
+      - target: PlantPlant
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/PlantPlant.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PlantPlant"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+
+  # ── Widget (requires a paid Apple Developer account for the App Group) ──
+  # PlantPlantWidgetExtension:
+  #   type: app-extension
+  #   platform: iOS
+  #   sources:
+  #     - path: PlantPlantWidget
+  #     - path: PlantPlant/Models
+  #     - path: PlantPlant/Resources/Assets.xcassets
+  #       buildPhase: resources
+  #   settings:
+  #     base:
+  #       PRODUCT_BUNDLE_IDENTIFIER: com.kittmedia.plantplant.widget
+  #       GENERATE_INFOPLIST_FILE: YES
+  #       INFOPLIST_FILE: PlantPlantWidget/Info.plist
+  #       CODE_SIGN_ENTITLEMENTS: PlantPlantWidget/PlantPlantWidget.entitlements
+  #       ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AppTint
+  #       ENABLE_USER_SCRIPT_SANDBOXING: YES
+
+schemes:
+  PlantPlant:
+    build:
+      targets:
+        PlantPlant: all
+        PlantPlantTests: [test]
+    test:
+      targets:
+        - PlantPlantTests
+      gatherCoverageData: false
+    run:
+      config: Debug

@@ -1,0 +1,83 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1E6B45"/>
+      <stop offset="1" stop-color="#0F3826"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.42" r="0.55">
+      <stop offset="0" stop-color="#3E9B63" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#3E9B63" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="leafFront" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9BE15D"/>
+      <stop offset="1" stop-color="#4FBE47"/>
+    </linearGradient>
+    <linearGradient id="pot" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E88A66"/>
+      <stop offset="0.5" stop-color="#E2795B"/>
+      <stop offset="1" stop-color="#C05F44"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#F29C78"/>
+      <stop offset="0.5" stop-color="#EF8E6B"/>
+      <stop offset="1" stop-color="#CE6B4E"/>
+    </linearGradient>
+
+    <!-- monstera leaf outline, reused for both leaves -->
+    <path id="leafShape" d="M512 158
+      C 648 190, 736 300, 726 436
+      C 718 548, 636 618, 512 638
+      C 388 618, 306 548, 298 436
+      C 288 300, 376 190, 512 158 Z"/>
+
+    <!-- mask that carves the slits and holes -->
+    <mask id="cutsFront">
+      <use href="#leafShape" fill="white"/>
+      <!-- left slits -->
+      <path d="M270 320 L 452 344 Q 466 358 450 370 L 262 352 Z" fill="black"/>
+      <path d="M258 440 L 448 442 Q 462 456 446 468 L 256 472 Z" fill="black"/>
+      <path d="M300 560 L 456 528 Q 472 540 458 554 L 316 592 Z" fill="black"/>
+      <!-- right slits -->
+      <path d="M754 320 L 572 344 Q 558 358 574 370 L 762 352 Z" fill="black"/>
+      <path d="M766 440 L 576 442 Q 562 456 578 468 L 768 472 Z" fill="black"/>
+      <path d="M724 560 L 568 528 Q 552 540 566 554 L 708 592 Z" fill="black"/>
+      <!-- fenestration holes -->
+      <ellipse cx="462" cy="380" rx="30" ry="15" transform="rotate(-14 462 380)" fill="black"/>
+      <ellipse cx="570" cy="500" rx="26" ry="13" transform="rotate(16 570 500)" fill="black"/>
+    </mask>
+  </defs>
+
+  <!-- background -->
+  
+  
+
+  <!-- ground shadow -->
+  
+
+  <!-- back leaf (twin #2): smaller, darker, tilted left -->
+  <g transform="translate(64 92) rotate(-26 512 400) scale(0.52)" opacity="0.9">
+    <use href="#leafShape" fill="#9A9A9A" mask="url(#cutsFront)"/>
+    <path d="M512 200 L 512 600" stroke="#7A7A7A" stroke-width="18" stroke-linecap="round"/>
+  </g>
+  <!-- back leaf stem -->
+  <path d="M496 712 C 452 640, 408 520, 386 420" fill="none" stroke="#8A8A8A" stroke-width="20" stroke-linecap="round"/>
+
+  <!-- front leaf stem -->
+  <path d="M516 716 C 516 690, 514 668, 514 630" fill="none" stroke="#C4C4C4" stroke-width="26" stroke-linecap="round"/>
+
+  <!-- front monstera leaf (twin #1) -->
+  <g>
+    <use href="#leafShape" fill="#EDEDED" mask="url(#cutsFront)"/>
+    <path d="M512 190 L 512 620" stroke="#B0B0B0" stroke-width="16" stroke-linecap="round" opacity="0.6"/>
+  </g>
+
+  <!-- soil -->
+  <path d="M356 706 Q 512 660 668 706 L 668 726 L 356 726 Z" fill="#5E5E5E"/>
+
+  <!-- pot body -->
+  <path d="M362 738 L 662 738 L 632 880 Q 512 902 392 880 Z" fill="#BDBDBD"/>
+  <!-- pot rim -->
+  <rect x="340" y="694" width="344" height="52" rx="24" fill="#D2D2D2"/>
+  <!-- pot highlight -->
+  <path d="M410 760 L 434 760 L 424 862 L 404 856 Z" fill="#E6E6E6" opacity="0.55"/>
+</svg>
