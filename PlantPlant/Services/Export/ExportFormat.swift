@@ -59,6 +59,31 @@ enum ExportFormat {
         return String(format: "%04d-%02d-%02d", parts.year ?? 0, parts.month ?? 0, parts.day ?? 0)
     }
 
+    /// Reads back an instant written by `instant(_:)`.
+    ///
+    /// `ISO8601DateFormatter` rather than `Date.ISO8601FormatStyle`, because the
+    /// format style's parser has to be told the exact shape it is about to see,
+    /// and the shape here carries a numeric offset that differs per file —
+    /// `+02:00` from this phone, `Z` from a UTC server, `+12:00` from the
+    /// Auckland fixture. `.withInternetDateTime` accepts all three, which is the
+    /// whole point of shipping the offset rather than an epoch.
+    ///
+    /// Returns nil rather than throwing: a single unparseable date is a field to
+    /// fall back on with a warning, not a reason to reject someone's library.
+    static func date(parsing text: String) -> Date? {
+        parser.date(from: text)
+    }
+
+    /// Shared because constructing one costs more than parsing with it. Date
+    /// formatters have been safe to use concurrently since iOS 7, and this one
+    /// is only ever touched from inside `DataImporter`'s actor anyway.
+    private static let parser: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime]
+
+        return formatter
+    }()
+
     static func generator() -> String {
         let info = Bundle.main.infoDictionary
         let version = info?["CFBundleShortVersionString"] as? String ?? "?"

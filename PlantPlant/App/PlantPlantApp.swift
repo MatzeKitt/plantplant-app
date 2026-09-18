@@ -23,9 +23,9 @@ struct PlantPlantApp: App {
         NotificationManager.shared.configure()
     }
 
-    /// DEBUG: `-showScreen ExportData` opens one screen directly, so a
-    /// scripted simulator run can screenshot it without driving taps through
-    /// three levels of navigation.
+    /// DEBUG: `-showScreen ExportData` / `-showScreen ImportData` opens one
+    /// screen directly, so a scripted simulator run can screenshot it without
+    /// driving taps through three levels of navigation.
     private var screenOverride: String? {
         #if DEBUG
         let args = ProcessInfo.processInfo.arguments
@@ -44,6 +44,8 @@ struct PlantPlantApp: App {
                 #if DEBUG
                 if screenOverride == "ExportData" {
                     NavigationStack { ExportDataView() }
+                } else if screenOverride == "ImportData" {
+                    NavigationStack { ImportDataView() }
                 } else {
                     RootTabView()
                 }

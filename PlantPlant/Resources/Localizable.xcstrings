@@ -67,6 +67,9 @@
         }
       }
     },
+    "%@ reminders have a due date that doesn't match their interval — that's normal for snoozed tasks, and they were kept exactly as exported." : {
+
+    },
     "%@ snoozed %lld days" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -115,6 +118,83 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@: %lld → %lld Tage"
+          }
+        }
+      }
+    },
+    "%@: a journal entry had an unreadable date and was skipped." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: Ein Journaleintrag hatte ein unlesbares Datum und wurde übersprungen."
+          }
+        }
+      }
+    },
+    "%@: a reminder had an unreadable due date and was skipped." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: Eine Erinnerung hatte ein unlesbares Fälligkeitsdatum und wurde übersprungen."
+          }
+        }
+      }
+    },
+    "%@: a seasonal interval covered no months and was dropped." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: Ein saisonales Intervall deckte keine Monate ab und wurde verworfen."
+          }
+        }
+      }
+    },
+    "%@: its room is not in the file, so it has no room." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: Der Raum ist nicht in der Datei, die Pflanze hat daher keinen Raum."
+          }
+        }
+      }
+    },
+    "%@: unknown care type \"%@\", imported as watering." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: Unbekannte Pflegeart „%@“, als Gießen importiert."
+          }
+        }
+      }
+    },
+    "%@: unknown sunlight level \"%@\"." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: Unbekannte Lichtstufe „%@“."
+          }
+        }
+      }
+    },
+    "%@: unknown water-when level \"%@\"." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: Unbekannte Gieß-Stufe „%@“."
           }
         }
       }
@@ -182,6 +262,17 @@
         }
       }
     },
+    "%lld photos could not be read when this file was written and are not in it." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Fotos konnten beim Schreiben dieser Datei nicht gelesen werden und fehlen."
+          }
+        }
+      }
+    },
     "%lld plants" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -189,6 +280,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld Pflanzen"
+          }
+        }
+      }
+    },
+    "%lld reminders have a due date that doesn't match their interval — that's normal for snoozed tasks, and they were kept exactly as exported." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Erinnerungen haben ein Fälligkeitsdatum, das nicht zu ihrem Intervall passt – bei zurückgestellten Aufgaben ist das normal, sie wurden exakt wie exportiert übernommen."
+          }
+        }
+      }
+    },
+    "A photo could not be decoded and was left out." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Foto konnte nicht dekodiert werden und wurde ausgelassen."
+          }
+        }
+      }
+    },
+    "A photo did not match its checksum and was left out." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Foto stimmte nicht mit seiner Prüfsumme überein und wurde ausgelassen."
           }
         }
       }
@@ -376,6 +500,28 @@
         }
       }
     },
+    "Already here" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schon vorhanden"
+          }
+        }
+      }
+    },
+    "Already in the journal" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schon im Journal"
+          }
+        }
+      }
+    },
     "Archive" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -405,6 +551,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Archiviert"
+          }
+        }
+      }
+    },
+    "Before you start" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bevor du startest"
           }
         }
       }
@@ -485,6 +642,17 @@
         }
       }
     },
+    "Choose File…" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datei auswählen …"
+          }
+        }
+      }
+    },
     "Choose from Library" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -524,6 +692,58 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Löschen"
+          }
+        }
+      }
+    },
+    "Delete %lld plants and import" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Pflanze löschen und importieren"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Pflanzen löschen und importieren"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Delete %lld plant and import"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Delete %lld plants and import"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Delete everything on this device?" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles auf diesem Gerät löschen?"
           }
         }
       }
@@ -717,6 +937,27 @@
         }
       }
     },
+    "Every plant, room and journal entry here is deleted first. This can't be undone." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Pflanzen, Räume und Journaleinträge hier werden zuerst gelöscht. Das lässt sich nicht rückgängig machen."
+          }
+        }
+      }
+    },
+    "Everything on this device is deleted first, then the file is imported. Use this to make this device match the file exactly." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles auf diesem Gerät wird zuerst gelöscht, dann wird die Datei importiert. Damit bringst du dieses Gerät exakt auf den Stand der Datei."
+          }
+        }
+      }
+    },
     "Everything: plants, rooms, care schedules, seasonal watering, the full journal and every photo. One file." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -746,6 +987,27 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Daten exportieren"
+          }
+        }
+      }
+    },
+    "Exported %@ by %@." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exportiert %@ von %@."
+          }
+        }
+      }
+    },
+    "Exported in %@; this device is in %@. Due dates may shift by a day." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exportiert in %@; dieses Gerät steht auf %@. Fälligkeiten können sich um einen Tag verschieben."
           }
         }
       }
@@ -849,6 +1111,60 @@
         }
       }
     },
+    "Import" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importieren"
+          }
+        }
+      }
+    },
+    "Import Data" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daten importieren"
+          }
+        }
+      }
+    },
+    "Imported" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importiert"
+          }
+        }
+      }
+    },
+    "Importing photo %lld of %lld" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foto %lld von %lld wird importiert"
+          }
+        }
+      }
+    },
+    "Importing plant %lld of %lld" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pflanze %lld von %lld wird importiert"
+          }
+        }
+      }
+    },
     "in %lld days" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -856,6 +1172,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "in %lld Tagen"
+          }
+        }
+      }
+    },
+    "In this file" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In dieser Datei"
           }
         }
       }
@@ -878,6 +1204,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Journal"
+          }
+        }
+      }
+    },
+    "Journal entries" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Journaleinträge"
+          }
+        }
+      }
+    },
+    "Journal entries added" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Journaleinträge hinzugefügt"
           }
         }
       }
@@ -1110,6 +1458,17 @@
         }
       }
     },
+    "Merge" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zusammenführen"
+          }
+        }
+      }
+    },
     "Mist" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1139,6 +1498,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sprüh-Intervall"
+          }
+        }
+      }
+    },
+    "Mode" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modus"
           }
         }
       }
@@ -1510,6 +1880,27 @@
         }
       }
     },
+    "Photos skipped" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fotos übersprungen"
+          }
+        }
+      }
+    },
+    "Pick a PlantPlant export — the file the Export screen produces, on this device or another one." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle einen PlantPlant-Export – die Datei, die der Export-Bildschirm erzeugt, auf diesem oder einem anderen Gerät."
+          }
+        }
+      }
+    },
     "Plant care" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1542,6 +1933,50 @@
         }
       }
     },
+    "Plants added" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pflanzen hinzugefügt"
+          }
+        }
+      }
+    },
+    "Plants already here are updated from the file and new ones are added. Nothing is deleted — a plant you removed elsewhere will come back." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pflanzen, die es hier schon gibt, werden aus der Datei aktualisiert, neue kommen dazu. Nichts wird gelöscht – eine anderswo entfernte Pflanze kommt zurück."
+          }
+        }
+      }
+    },
+    "Plants deleted" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pflanzen gelöscht"
+          }
+        }
+      }
+    },
+    "Plants updated" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pflanzen aktualisiert"
+          }
+        }
+      }
+    },
     "Plants you archive appear here. Swipe to restore or delete." : {
       "localizations" : {
         "de" : {
@@ -1570,6 +2005,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Schnellauswahl"
+          }
+        }
+      }
+    },
+    "Reading the file…" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datei wird gelesen …"
           }
         }
       }
@@ -1614,6 +2060,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erinnerungen"
+          }
+        }
+      }
+    },
+    "Reminders were rebuilt from the imported dates." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Erinnerungen wurden aus den importierten Daten neu aufgebaut."
+          }
+        }
+      }
+    },
+    "Replace everything" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles ersetzen"
+          }
+        }
+      }
+    },
+    "Replace Everything" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles ersetzen"
           }
         }
       }
@@ -1750,6 +2228,16 @@
         }
       }
     },
+    "Save everything to one file — to move to PlantPlant on the web, or just to keep a copy. Import reads one back." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sichere alles in einer Datei – um zu PlantPlant im Web zu wechseln oder einfach als Kopie. Import liest sie wieder ein."
+          }
+        }
+      }
+    },
     "Scientific name" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1855,6 +2343,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Übersprungen"
+          }
+        }
+      }
+    },
+    "Skipped a plant with an unreadable id." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine Pflanze mit unlesbarer ID wurde übersprungen."
+          }
+        }
+      }
+    },
+    "Skipped a room with an unreadable id." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Raum mit unlesbarer ID wurde übersprungen."
           }
         }
       }
@@ -1969,6 +2479,72 @@
         }
       }
     },
+    "That doesn't look like a PlantPlant export." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das sieht nicht nach einem PlantPlant-Export aus."
+          }
+        }
+      }
+    },
+    "That file could not be read." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Datei konnte nicht gelesen werden."
+          }
+        }
+      }
+    },
+    "The file is incomplete — it stops before the photos. It was probably cut off while being copied." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Datei ist unvollständig – sie endet vor den Fotos. Wahrscheinlich wurde sie beim Kopieren abgeschnitten."
+          }
+        }
+      }
+    },
+    "The file says it has %lld photos but only %lld are in it." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Datei gibt %lld Fotos an, enthält aber nur %lld."
+          }
+        }
+      }
+    },
+    "The photo section of the file is damaged." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Fotobereich der Datei ist beschädigt."
+          }
+        }
+      }
+    },
+    "This export was written by a newer version of PlantPlant (format %lld). Update the app and try again." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser Export stammt aus einer neueren PlantPlant-Version (Format %lld). Aktualisiere die App und versuche es erneut."
+          }
+        }
+      }
+    },
     "This permanently removes the plant and its history." : {
       "localizations" : {
         "de" : {
@@ -2041,6 +2617,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Version"
+          }
+        }
+      }
+    },
+    "Warnings" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warnungen"
           }
         }
       }
@@ -2142,6 +2729,16 @@
         }
       }
     },
+    "What happens to what's here" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Was mit den vorhandenen Daten passiert"
+          }
+        }
+      }
+    },
     "What will be exported" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2149,6 +2746,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Was exportiert wird"
+          }
+        }
+      }
+    },
+    "Will be deleted" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird gelöscht"
           }
         }
       }

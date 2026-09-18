@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct RoomEditView: View {
     @Bindable var room: Room

@@ -64,6 +64,15 @@ enum ExportPhotoEncoder {
     /// whose photo was ever captured through a photo reminder has the same bytes
     /// in two places.
     static func sourceKey(_ data: Data) -> String {
+        sha256Hex(data)
+    }
+
+    /// The content address of some bytes, lowercase hex.
+    ///
+    /// The export keys its photo map by this, and the importer re-derives it to
+    /// check that what arrived is what was sent — which is the only reason to
+    /// content-address the map rather than number the photos.
+    static func sha256Hex(_ data: Data) -> String {
         hex(SHA256.hash(data: data))
     }
 

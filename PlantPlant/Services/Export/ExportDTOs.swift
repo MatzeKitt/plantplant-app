@@ -11,7 +11,13 @@ import Foundation
 /// enabled water schedule's `nextDue`, not user intent, and the importing server
 /// must own its own denormalisation or it drifts the first time an edit forgets
 /// to update it.
-struct ExportEnvelope: Encodable {
+///
+/// These are `Codable`, not `Encodable`, because `DataImporter` reads the same
+/// file back. One set of types for both directions is the only way a field can
+/// never be written under one name and looked for under another — the failure
+/// mode a separate set of import DTOs invites, and one that shows up as silently
+/// missing data rather than as an error.
+struct ExportEnvelope: Codable {
     let format: String
     let formatVersion: Int
     let generator: String
@@ -25,7 +31,7 @@ struct ExportEnvelope: Encodable {
     let preferences: ExportPreferences
 }
 
-struct ExportCounts: Encodable {
+struct ExportCounts: Codable {
     var rooms = 0
     var plants = 0
     var schedules = 0
@@ -34,16 +40,16 @@ struct ExportCounts: Encodable {
     var photos = 0
 }
 
-struct ExportDiagnostics: Encodable {
+struct ExportDiagnostics: Codable {
     var photosSkipped = 0
     var warnings: [String] = []
 }
 
-struct ExportPreferences: Encodable {
+struct ExportPreferences: Codable {
     let reminderMinutes: Int
 }
 
-struct RoomDTO: Encodable {
+struct RoomDTO: Codable {
     let id: String
     let name: String
     let sortIndex: Int
@@ -57,7 +63,7 @@ struct RoomDTO: Encodable {
 /// against) spells them out. A format frozen between two codebases that cannot
 /// share types is worth keeping literally identical, so the few structs with
 /// optionals encode by hand.
-struct PlantDTO: Encodable {
+struct PlantDTO: Codable {
     let id: String
     let name: String
     let scientificName: String
@@ -100,9 +106,10 @@ struct PlantDTO: Encodable {
         try container.encode(wateringSeasons, forKey: .wateringSeasons)
         try container.encode(logs, forKey: .logs)
     }
+
 }
 
-struct ScheduleDTO: Encodable {
+struct ScheduleDTO: Codable {
     let id: String
     let type: String
     let intervalDays: Int
@@ -140,15 +147,16 @@ struct ScheduleDTO: Encodable {
         try container.encode(nextDueLocalDay, forKey: .nextDueLocalDay)
         try container.encode(matchesDerivedNextDue, forKey: .matchesDerivedNextDue)
     }
+
 }
 
-struct SeasonDTO: Encodable {
+struct SeasonDTO: Codable {
     let id: String
     let months: [Int]
     let intervalDays: Int
 }
 
-struct LogDTO: Encodable {
+struct LogDTO: Codable {
     let id: String
     let type: String
     let at: String
@@ -180,5 +188,82 @@ struct LogDTO: Encodable {
         try container.encode(sunlightTo, forKey: .sunlightTo)
         try container.encode(soilFrom, forKey: .soilFrom)
         try container.encode(soilTo, forKey: .soilTo)
+    }
+
+}
+
+// MARK: - Reading them back
+
+/// The decoders live in extensions so the memberwise initialisers the exporter
+/// builds these with survive — a custom `init` in the body of a struct suppresses
+/// them.
+///
+/// All three are lenient about absence and strict about identity: only `id` is
+/// required, and everything else falls back to what the app itself defaults to.
+/// That is the same line the web importer takes, and the reason is the same — a
+/// file trimmed by hand, or written by a future version that stopped emitting a
+/// field, should cost you that field and not the whole plant.
+
+extension PlantDTO {
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.init(
+            id: try values.decode(String.self, forKey: .id),
+            name: try values.decodeIfPresent(String.self, forKey: .name) ?? "",
+            scientificName: try values.decodeIfPresent(String.self, forKey: .scientificName) ?? "",
+            roomId: try values.decodeIfPresent(String.self, forKey: .roomId),
+            sunlight: try values.decodeIfPresent(String.self, forKey: .sunlight) ?? "",
+            soilDryness: try values.decodeIfPresent(String.self, forKey: .soilDryness) ?? "",
+            notes: try values.decodeIfPresent(String.self, forKey: .notes) ?? "",
+            isArchived: try values.decodeIfPresent(Bool.self, forKey: .isArchived) ?? false,
+            createdAt: try values.decodeIfPresent(String.self, forKey: .createdAt) ?? "",
+            createdLocalDay: try values.decodeIfPresent(String.self, forKey: .createdLocalDay) ?? "",
+            acquiredAt: try values.decodeIfPresent(String.self, forKey: .acquiredAt) ?? "",
+            acquiredLocalDay: try values.decodeIfPresent(String.self, forKey: .acquiredLocalDay) ?? "",
+            photoSha256: try values.decodeIfPresent(String.self, forKey: .photoSha256),
+            schedules: try values.decodeIfPresent([ScheduleDTO].self, forKey: .schedules) ?? [],
+            wateringSeasons: try values.decodeIfPresent([SeasonDTO].self, forKey: .wateringSeasons) ?? [],
+            logs: try values.decodeIfPresent([LogDTO].self, forKey: .logs) ?? []
+        )
+    }
+}
+
+extension ScheduleDTO {
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.init(
+            id: try values.decode(String.self, forKey: .id),
+            type: try values.decodeIfPresent(String.self, forKey: .type) ?? "",
+            intervalDays: try values.decodeIfPresent(Int.self, forKey: .intervalDays) ?? 0,
+            isEnabled: try values.decodeIfPresent(Bool.self, forKey: .isEnabled) ?? true,
+            lastDoneAt: try values.decodeIfPresent(String.self, forKey: .lastDoneAt),
+            lastDoneLocalDay: try values.decodeIfPresent(String.self, forKey: .lastDoneLocalDay),
+            nextDueAt: try values.decodeIfPresent(String.self, forKey: .nextDueAt) ?? "",
+            nextDueLocalDay: try values.decodeIfPresent(String.self, forKey: .nextDueLocalDay) ?? "",
+            // Absent means nobody checked, which for a flag that is only ever
+            // reported and never acted on is the same as "did not match".
+            matchesDerivedNextDue: try values.decodeIfPresent(Bool.self, forKey: .matchesDerivedNextDue) ?? false
+        )
+    }
+}
+
+extension LogDTO {
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.init(
+            id: try values.decode(String.self, forKey: .id),
+            type: try values.decodeIfPresent(String.self, forKey: .type) ?? "",
+            at: try values.decodeIfPresent(String.self, forKey: .at) ?? "",
+            localDay: try values.decodeIfPresent(String.self, forKey: .localDay) ?? "",
+            note: try values.decodeIfPresent(String.self, forKey: .note) ?? "",
+            photoSha256: try values.decodeIfPresent(String.self, forKey: .photoSha256),
+            sunlightFrom: try values.decodeIfPresent(Int.self, forKey: .sunlightFrom),
+            sunlightTo: try values.decodeIfPresent(Int.self, forKey: .sunlightTo),
+            soilFrom: try values.decodeIfPresent(Int.self, forKey: .soilFrom),
+            soilTo: try values.decodeIfPresent(Int.self, forKey: .soilTo)
+        )
     }
 }

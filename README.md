@@ -29,6 +29,10 @@ with a **Liquid Glass** look and **dark mode** by default.
   **Mark done** and a **Snooze…** action that takes a typed number of days.
 - **Export** — Settings → Data writes the whole library to one `plantplant.export` JSON file
   (photos inline, downscaled to 2000 px), for handing to the web app.
+- **Import** — Settings → Data reads one back: pick a file, see what's in it and what it would
+  touch, then **Merge** (upsert by id, journal entries never duplicated, so re-importing the same
+  file is a no-op) or **Replace everything**. Photos are checked against their content hash, and a
+  failed import rolls back rather than leaving half a library.
 - **Home screen widget** — "Needs Water" (small + medium), showing plants due today via a
   shared SwiftData store. **Currently disabled** — see the note in `project.yml`: App Groups
   and app extensions need a paid Apple Developer Program membership.
@@ -41,7 +45,7 @@ PlantPlant/
   App/                           # App entry + root tab view
   Models/                        # SwiftData @Model types + shared container (shared w/ widget)
   Services/                      # CareService, NotificationManager, SampleData
-    Export/                      # DataExporter + the plantplant.export writer
+    Export/                      # the plantplant.export format: DataExporter + DataImporter
   Views/                         # Plants, Reminders, Settings, Archive, Components
   Resources/                     # Assets.xcassets, Localizable.xcstrings, entitlements
 PlantPlantTests/                 # Swift Testing suites: care logic + export
@@ -77,7 +81,7 @@ Run. To build from the command line once the runtime is installed:
 
 ```bash
 xcodebuild -project PlantPlant.xcodeproj -scheme PlantPlant \
-  -destination 'platform=iOS Simulator,name=iPhone 17' build
+  -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build
 ```
 
 ### Tests
@@ -87,8 +91,15 @@ The suites use **Swift Testing**, not XCTest, so `xcodebuild`'s own summary line
 
 ```bash
 xcodebuild test -project PlantPlant.xcodeproj -scheme PlantPlant \
-  -destination 'platform=iOS Simulator,name=iPhone 17' 2>&1 | grep -E '✔|✘'
+  -destination 'platform=iOS Simulator,name=iPhone 17 Pro' 2>&1 | grep -E '✔|✘'
 ```
+
+(Use whatever device `xcrun simctl list devices available` actually lists — the plain "iPhone 17"
+is not installed on every machine.)
+
+DEBUG launch arguments make the screens scriptable without driving taps:
+`-seedSampleData`, `-seedSamplePhotos`, `-startTab reminders|plants|search|settings`,
+`-showScreen ExportData|ImportData`, `-exportSampleData <path>`, `-dumpNotifications`.
 
 ## Configuration notes
 

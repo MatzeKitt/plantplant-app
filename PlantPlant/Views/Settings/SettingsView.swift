@@ -83,10 +83,15 @@ struct SettingsView: View {
                     } label: {
                         Label("Export Data", systemImage: "square.and.arrow.up")
                     }
+                    NavigationLink {
+                        ImportDataView()
+                    } label: {
+                        Label("Import Data", systemImage: "square.and.arrow.down")
+                    }
                 } header: {
                     Text("Data")
                 } footer: {
-                    Text("Save everything to one file — to move to PlantPlant on the web, or just to keep a copy.")
+                    Text("Save everything to one file — to move to PlantPlant on the web, or just to keep a copy. Import reads one back.")
                 }
 
                 Section {
